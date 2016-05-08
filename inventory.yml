@@ -5,11 +5,13 @@
   gather_facts: False
   tasks:
 
-  - raw: ls /etc/*release > /tmp/junk
-  - raw: echo "" >>/tmp/junk
-  - raw: cat /etc/*release >> /tmp/junk
-  - raw: echo "" >>/tmp/junk
-  - raw: echo "whoami=`whoami`" >> /tmp/junk
+#  - raw: ls /etc/*release > /tmp/junk
+#  - raw: echo "" >>/tmp/junk
+#  - raw: cat /etc/*release >> /tmp/junk
+#  - raw: echo "" >>/tmp/junk
+#  - raw: echo "whoami=`whoami`" >> /tmp/junk
+  - raw: which jq > /tmp/junk
+  - raw: ls -la /usr/bin/jq >> /tmp/junk
   - raw: cat /tmp/junk
     register: clc_var
 
