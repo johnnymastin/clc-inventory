@@ -5,29 +5,34 @@
   gather_facts: False
   tasks:
 
-  - name: "Install inventory script"
-    copy:
-      src: files/inventory/inventory.sh
-      dest: /var/tmp/inventory.sh
-      owner: root
-      group: root
-      mode: 0744
+  - raw: ls /etc/*release
+  - raw: cat /etc/*release
+    register: clc_var
+  - debug: clc_var 
 
-  - name: Install the latest version of jq
-    yum: name=jq state=latest
-
-  - name: Run inventory script.  Save output as /var/tmp/inventory.csv
-    raw: /var/tmp/inventory.sh > /var/tmp/inventory.csv
-
-- name: "Copy inventory file to UC1JMT1ANSIBL02!"
-  hosts: UC1JMT1ANSIBL02
-  gather_facts: False
-  tasks:
-
-  - name: "Install inventory script"
-    copy:
-      src: /var/tmp/inventory.sh
-      dest: /var/tmp/inventory.sh
-      owner: root
-      group: root
-      mode: 0644
+#  - name: "Install inventory script"
+#    copy:
+#      src: files/inventory/inventory.sh
+#      dest: /var/tmp/inventory.sh
+#      owner: root
+#      group: root
+#      mode: 0744
+#
+#  - name: Install the latest version of jq
+#    yum: name=jq state=latest
+#
+#  - name: Run inventory script.  Save output as /var/tmp/inventory.csv
+#    raw: /var/tmp/inventory.sh > /var/tmp/inventory.csv
+#
+#- name: "Copy inventory file to UC1JMT1ANSIBL02!"
+#  hosts: UC1JMT1ANSIBL02
+#  gather_facts: False
+#  tasks:
+#
+#  - name: "Install inventory script"
+#    copy:
+#      src: /var/tmp/inventory.sh
+#      dest: /var/tmp/inventory.sh
+#      owner: root
+#      group: root
+#      mode: 0644
