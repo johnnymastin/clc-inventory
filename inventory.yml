@@ -1,7 +1,7 @@
 ---
 
 - name: "Get Ansible to give you an inventory!"
-  hosts: UC1JMT1ANSIBL02
+  hosts: localhost
   gather_facts: False
   tasks:
 
@@ -19,8 +19,15 @@
   - name: Run inventory script.  Save output as /var/tmp/inventory.csv
     raw: /var/tmp/inventory.sh > /var/tmp/inventory.csv
 
-#  - name: Give output
-#    command: /usr/bin/cat /var/tmp/inventory.out
-#    register: clc_svr_var
-#
-#  - debug: var=clc_svr_var.stdout
+- name: "Copy inventory file to UC1JMT1ANSIBL02!"
+  hosts: UC1JMT1ANSIBL02
+  gather_facts: False
+  tasks:
+
+  - name: "Install inventory script"
+    copy:
+      src: /var/tmp/inventory.sh
+      dest: /var/tmp/inventory.sh
+      owner: root
+      group: root
+      mode: 0644
