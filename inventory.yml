@@ -16,12 +16,11 @@
   - name: Install the latest version of jq
     yum: name=jq state=latest
 
-  - name: Run inventory script
-    raw: /var/tmp/inventory.sh > /var/tmp/inventory.out
+  - name: Run inventory script.  Save output as /var/tmp/inventory.csv
+    raw: /var/tmp/inventory.sh > /var/tmp/inventory.csv
 
 #  - name: Give output
 #    command: /usr/bin/cat /var/tmp/inventory.out
 #    register: clc_svr_var
 #
 #  - debug: var=clc_svr_var.stdout
-  - name: Please see /var/tmp/inventory.out for inventory in CSV format.
