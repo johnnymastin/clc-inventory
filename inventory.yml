@@ -1,0 +1,26 @@
+---
+
+- name: "Get Ansible to give you an inventory!"
+  hosts: UC1JMT1ANSIBL02
+  gather_facts: False
+  tasks:
+
+  - name: "Install inventory script"
+    copy:
+      src: files/inventory/inventory.sh
+      dest: /var/tmp/inventory.sh
+      owner: root
+      group: root
+      mode: 0744
+
+  - name: Install the latest version of jq
+    yum: name=jq state=latest
+
+  - name: Run inventory script
+    raw: /var/tmp/inventory.sh > /var/tmp/inventory.out
+
+  - name: Give output
+    command: /usr/bin/cat /var/tmp/inventory.out
+    register: clc_svr_var
+
+  - debug: var=clc_svr_var.stdout
