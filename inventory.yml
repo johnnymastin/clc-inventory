@@ -12,7 +12,7 @@
 #  - raw: echo "whoami=`whoami`" >> /tmp/junk
 #  - raw: which jq > /tmp/junk
   - raw: hostname > /tmp/junk
-  - raw: ls -la /usr/bin/jq >> /tmp/junk
+#  - raw: ls -la /usr/bin/jq >> /tmp/junk
   - raw: cat /tmp/junk
     register: clc_var
 
