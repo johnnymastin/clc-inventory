@@ -5,10 +5,15 @@
   gather_facts: False
   tasks:
 
-  - raw: ls /etc/*release
-  - raw: cat /etc/*release
+  - raw: ls /etc/*release > /tmp/junk
+  - raw: echo "" >>/tmp/junk
+  - raw: cat /etc/*release >> /tmp/junk
+  - raw: echo "" >>/tmp/junk
+  - raw: echo "whoami=`whoami`" >> /tmp/junk
+  - raw: cat /tmp/junk
     register: clc_var
-  - debug: clc_var 
+
+  - debug: var=clc_var.stdout
 
 #  - name: "Install inventory script"
 #    copy:
