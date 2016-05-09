@@ -13,7 +13,7 @@
 #  - raw: which jq > /tmp/junk
 #  - raw: hostname > /tmp/junk
 #  - raw: ls -la /usr/bin/jq >> /tmp/junk
-  - raw: echo $CLC_V2_API_USERNAME >>/tmp/junk
+  - raw: /etc/ansible/hosts >>/tmp/junk
   - raw: cat /tmp/junk
     register: clc_var
 
