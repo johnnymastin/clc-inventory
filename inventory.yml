@@ -11,8 +11,9 @@
 #  - raw: echo "" >>/tmp/junk
 #  - raw: echo "whoami=`whoami`" >> /tmp/junk
 #  - raw: which jq > /tmp/junk
-  - raw: hostname > /tmp/junk
+#  - raw: hostname > /tmp/junk
 #  - raw: ls -la /usr/bin/jq >> /tmp/junk
+  - raw: sudo yum install jq -y
   - raw: cat /tmp/junk
     register: clc_var
 
